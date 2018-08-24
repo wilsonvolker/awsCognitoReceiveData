@@ -64,26 +64,26 @@ Get User Details
 CognitoUser user = AppHelper.getPool().getCurrentUser();
 
 //Sync and download user details
-        GetDetailsHandler getDetailsHandler = new GetDetailsHandler() {
-            @Override
-            public void onSuccess(CognitoUserDetails cognitoUserDetails) {
-                //Store details in App Handler
-                AppHelper.setUserDetails(cognitoUserDetails);
-                Map<String, String> user = cognitoUserDetails.getAttributes().getAttributes();
-                for(Map.Entry<String, String> entry : user.entrySet()){
-                    profileKey.add(entry.getKey());
-                    profileValue.add(entry.getValue());
-                    Log.d("check", profileKey.toString());
-                    Log.d("check", profileValue.toString());
-                }
-            }
+GetDetailsHandler getDetailsHandler = new GetDetailsHandler() {
+    @Override
+    public void onSuccess(CognitoUserDetails cognitoUserDetails) {
+        //Store details in App Handler
+        AppHelper.setUserDetails(cognitoUserDetails);
+        Map<String, String> user = cognitoUserDetails.getAttributes().getAttributes();
+        for(Map.Entry<String, String> entry : user.entrySet()){
+            profileKey.add(entry.getKey());
+            profileValue.add(entry.getValue());
+            Log.d("check", profileKey.toString());
+            Log.d("check", profileValue.toString());
+        }
+    }
 
-            @Override
-            public void onFailure(Exception exception) {
-                Snackbar.make(getView(), "Fetching Failure", Snackbar.LENGTH_SHORT).show();
-            }
-        };
-        AppHelper.getPool().getUser(user.getUserId()).getDetailsInBackground(getDetailsHandler);
+    @Override
+    public void onFailure(Exception exception) {
+        Snackbar.make(getView(), "Fetching Failure", Snackbar.LENGTH_SHORT).show();
+    }
+};
+AppHelper.getPool().getUser(user.getUserId()).getDetailsInBackground(getDetailsHandler);
 //END Sync and download user details
 ```
 
