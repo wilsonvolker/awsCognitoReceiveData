@@ -1,5 +1,5 @@
 # awsCognitoReceiveData
-Receive Data From Aws Cognito
+Receive Data From Aws Cognito (Get User Attributes)
 
 Download API in the above file (AppHelper, ItemToDisplay)
 
